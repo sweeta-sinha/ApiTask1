@@ -12538,9 +12538,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\APITraining\\WebApplication3\\ApiTask1\\WebApplication3\\WebApplication3.csproj",
-      "projectName": "WebApplication3",
-      "projectPath": "D:\\Projects\\APITraining\\WebApplication3\\ApiTask1\\WebApplication3\\WebApplication3.csproj",
+      "projectUniqueName": "D:\\Projects\\APITraining\\WebApplication3\\ApiTask1\\WebApplication3\\SimpleApiTask.csproj",
+      "projectName": "SimpleApiTask",
+      "projectPath": "D:\\Projects\\APITraining\\WebApplication3\\ApiTask1\\WebApplication3\\SimpleApiTask.csproj",
       "packagesPath": "C:\\Users\\pci188\\.nuget\\packages\\",
       "outputPath": "D:\\Projects\\APITraining\\WebApplication3\\ApiTask1\\WebApplication3\\obj\\",
       "projectStyle": "PackageReference",

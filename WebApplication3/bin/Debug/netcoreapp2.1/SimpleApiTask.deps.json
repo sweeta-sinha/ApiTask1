@@ -22,7 +22,7 @@
   },
   "targets": {
     ".NETCoreApp,Version=v2.1": {
-      "WebApplication3/1.0.0": {
+      "SimpleApiTask/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.App": "2.1.1",
           "Microsoft.AspNetCore.Razor.Design": "2.1.2",
@@ -33,10 +33,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.1.9"
         },
         "runtime": {
-          "WebApplication3.dll": {}
+          "SimpleApiTask.dll": {}
         },
         "compile": {
-          "WebApplication3.dll": {}
+          "SimpleApiTask.dll": {}
         }
       },
       "Microsoft.AspNetCore.Razor.Design/2.1.2": {},
@@ -3460,7 +3460,7 @@
     }
   },
   "libraries": {
-    "WebApplication3/1.0.0": {
+    "SimpleApiTask/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

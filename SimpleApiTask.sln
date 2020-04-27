@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication3", "WebApplication3\WebApplication3.csproj", "{DF455C12-86E2-4FD6-90D5-279C1B36C91A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleApiTask", "WebApplication3\SimpleApiTask.csproj", "{DF455C12-86E2-4FD6-90D5-279C1B36C91A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

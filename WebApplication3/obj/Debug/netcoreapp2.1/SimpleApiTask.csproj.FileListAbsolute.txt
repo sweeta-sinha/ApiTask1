@@ -1,0 +1,14 @@
+D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\bin\Debug\netcoreapp2.1\SimpleApiTask.deps.json
+D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\bin\Debug\netcoreapp2.1\SimpleApiTask.runtimeconfig.json
+D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\bin\Debug\netcoreapp2.1\SimpleApiTask.runtimeconfig.dev.json
+D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\bin\Debug\netcoreapp2.1\SimpleApiTask.dll
+D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\bin\Debug\netcoreapp2.1\SimpleApiTask.pdb
+D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\obj\Debug\netcoreapp2.1\SimpleApiTask.csprojAssemblyReference.cache
+D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\obj\Debug\netcoreapp2.1\SimpleApiTask.csproj.CoreCompileInputs.cache
+D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\obj\Debug\netcoreapp2.1\SimpleApiTask.RazorAssemblyInfo.cache
+D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\obj\Debug\netcoreapp2.1\SimpleApiTask.RazorAssemblyInfo.cs
+D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\obj\Debug\netcoreapp2.1\SimpleApiTask.AssemblyInfoInputs.cache
+D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\obj\Debug\netcoreapp2.1\SimpleApiTask.AssemblyInfo.cs
+D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\obj\Debug\netcoreapp2.1\SimpleApiTask.RazorTargetAssemblyInfo.cache
+D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\obj\Debug\netcoreapp2.1\SimpleApiTask.dll
+D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\obj\Debug\netcoreapp2.1\SimpleApiTask.pdb

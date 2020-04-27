@@ -12,17 +12,3 @@ D:\Projects\APITraining\WebApplication3\WebApplication3\obj\Debug\netcoreapp2.1\
 D:\Projects\APITraining\WebApplication3\WebApplication3\bin\Debug\netcoreapp2.1\WebApplication3.pdb
 D:\Projects\APITraining\WebApplication3\WebApplication3\obj\Debug\netcoreapp2.1\WebApplication3.dll
 D:\Projects\APITraining\WebApplication3\WebApplication3\obj\Debug\netcoreapp2.1\WebApplication3.pdb
-D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\bin\Debug\netcoreapp2.1\WebApplication3.deps.json
-D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\bin\Debug\netcoreapp2.1\WebApplication3.runtimeconfig.json
-D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\bin\Debug\netcoreapp2.1\WebApplication3.runtimeconfig.dev.json
-D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\bin\Debug\netcoreapp2.1\WebApplication3.dll
-D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\bin\Debug\netcoreapp2.1\WebApplication3.pdb
-D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\obj\Debug\netcoreapp2.1\WebApplication3.csproj.CoreCompileInputs.cache
-D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\obj\Debug\netcoreapp2.1\WebApplication3.RazorAssemblyInfo.cache
-D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\obj\Debug\netcoreapp2.1\WebApplication3.RazorAssemblyInfo.cs
-D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\obj\Debug\netcoreapp2.1\WebApplication3.AssemblyInfoInputs.cache
-D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\obj\Debug\netcoreapp2.1\WebApplication3.AssemblyInfo.cs
-D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\obj\Debug\netcoreapp2.1\WebApplication3.RazorTargetAssemblyInfo.cache
-D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\obj\Debug\netcoreapp2.1\WebApplication3.dll
-D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\obj\Debug\netcoreapp2.1\WebApplication3.pdb
-D:\Projects\APITraining\WebApplication3\ApiTask1\WebApplication3\obj\Debug\netcoreapp2.1\WebApplication3.csprojAssemblyReference.cache
