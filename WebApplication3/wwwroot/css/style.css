@@ -13,11 +13,14 @@
    margin-right:25%;
 }
 .validation {
-    display: none;
     color: red;
     font-size: 14px;
 }
 
+.req{
+    color:red;
+    font-size:14px;
+}
 /* label color */
 .input-field label {
     color: #000;

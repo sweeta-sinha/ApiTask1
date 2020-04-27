@@ -12,44 +12,45 @@
 </head>
 <body>
     <div class="signup_form">
-
+        <h2 class="center-align">Sign Up</h2>
+        <p class="req">(* Fields are required.)</p>
         <div class="row">
             <form class="col s12">
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="fname" type="text" class="validate" onchange="return validatefname()">
-                        <label for="fname">First Name</label>
+                        <input id="fname" type="text" class="validate" onkeyup="validatefname()">
+                        <label for="fname">First Name<span class="req">*</span></label>
                     </div>
 
                     <div class="input-field col s6">
-                        <input id="lname" type="text" class="validate" onchange="return validatelname()">
-                        <label for="lname">Last Name</label>
+                        <input id="lname" type="text" class="validate" onkeyup="validatelname()">
+                        <label for="lname">Last Name<span class="req">*</span></label>
                     </div>
-                    <div class="validation col s12" id="fname_valid">*Please enter a first valid name</div>
-                    <div class="validation col s12" id="lname_valid">*Please enter a last valid name</div>
+                    <div class="validation col s12" id="fname_valid"></div>
+                    <div class="validation col s12" id="lname_valid"></div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="uname" type="text" class="validate" onchange="return validateuname()">
-                        <label for="uname">Username</label>
+                        <input id="uname" type="text" class="validate" onkeyup="validateuname()">
+                        <label for="uname">Username<span class="req">*</span></label>
                     </div>
-                    <div class="validation col s12" id="uname_valid">*Please enter a valid username(Alphabets and numbers => min 3 and max 20 characters.)</div>
+                    <div class="validation col s12" id="uname_valid"></div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="pwd" type="password" class="validate" onchange="return validatepwd()">
-                        <label for="pwd">Password</label>
+                        <input id="pwd" type="password" class="validate" onkeyup="validatepwd()">
+                        <label for="pwd">Password<span class="req">*</span></label>
                     </div>
-                    <div class="validation col s12" id="pwd_valid">*Please enter a valid password(Alphabets ,special characters => min length 6 max 20 charters.)</div>
+                    <div class="validation col s12" id="pwd_valid"></div>
                 </div>
                 <div class="row">
                     <div class="col s12 center-align">
-                        <button class="btn waves-effect waves-light" id="submit_btn" type="submit">
+                        <button class="btn waves-effect waves-light" id="submit_btn">
                             Submit
                         </button>
                     </div>
                 </div>
-                
+
             </form>
         </div>
 
@@ -59,54 +60,55 @@
 
 <script>
     function validatefname() {
-        var regName = /^[a-zA-Z]$/;
+        var regName = /^[a-zA-Z]/;
         var name = document.getElementById('fname').value;
-        if (!regName.test(name)) {
-            document.getElementById('fname_valid').style = "display: block";
+        if (!(name.match(regName))) {
+            document.getElementById('fname_valid').innerHTML = "*Please enter a valid first name";
             document.getElementById('fname').focus();
-            return false;
-        } else {
-            document.getElementById('fname_valid').style = "display: none";
-            return true;
+
+        }
+        else {
+            document.getElementById('fname_valid').innerHTML = "";
+
         }
     }
 
     function validatelname() {
-        var regName = /^[a-zA-Z]$/;
+        var regName = /^[a-zA-Z]/;
         var name = document.getElementById('lname').value;
-        if (!regName.test(name)) {
-            document.getElementById('lname_valid').style = "display: block";
+        if (!(name.match(regName))) {
+            document.getElementById('lname_valid').innerHTML = "*Please enter a valid last name";
             document.getElementById('lname').focus();
-            return false;
+
         } else {
-            document.getElementById('lname_valid').style = "display: none";
-            return true;
+            document.getElementById('lname_valid').innerHTML = "";
+
         }
     }
 
     function validateuname() {
         var ck_username = /^[A-Za-z0-9_]{3,20}$/;
         var name = document.getElementById('uname').value;
-        if (!ck_username.test(name)) {
-            document.getElementById('uname_valid').style = "display: block";
+        if (!(name.match(ck_username))) {
+            document.getElementById('uname_valid').innerHTML = "*Please enter a valid username(Alphabets and numbers => min 3 and max 20 characters.)";
             document.getElementById('uname').focus();
-            return false;
+
         } else {
-            document.getElementById('uname_valid').style = "display: none";
-            return true;
+            document.getElementById('uname_valid').innerHTML = "";
+
         }
     }
 
-    function validateuname() {
+    function validatepwd() {
         var ck_password = /^[A-Za-z0-9!@#$%^&*()_]{6,20}$/;
         var name = document.getElementById('pwd').value;
-        if (!ck_password.test(name)) {
-            document.getElementById('pwd_valid').style = "display: block";
+        if (!(name.match(ck_password))) {
+            document.getElementById('pwd_valid').innerHTML = "*Please enter a valid password(Alphabets ,special characters => min length 6 max 20 charters.)";
             document.getElementById('pwd').focus();
-            return false;
+
         } else {
-            document.getElementById('pwd_valid').style = "display: none";
-            return true;
+            document.getElementById('pwd_valid').innerHTML = "";
+
         }
     }
 
@@ -119,26 +121,52 @@
                 Username: $("#uname").val(),
                 Password: $("#pwd").val(),
             };
-            $.ajax({
-                url: "/api/Users",
-                type: "POST",
-                data: JSON.stringify(dataObject),
-                dataType: "json",
-                headers: { "Content-Type": "application/json" },
-                success: function (data) {
-                    alert("Successfully Registered!");
-                    $("#fname").val('');
-                    $("#lname").val('');
-                    $("#uname").val('');
-                    $("#pwd").val('');
-                    
-                },
-                error: function (data) {
-               
-                    alert("Registration Failed!");
+            var fname = document.getElementById('fname').value;
+            var lname = document.getElementById('lname').value;
+            var uname = document.getElementById('uname').value;
+            var pwd = document.getElementById('pwd').value;
 
-                }
-            });
+            if (fname.trim() == "") {
+                document.getElementById('fname_valid').innerHTML = "*Please enter your first name";
+                document.getElementById('fname').focus();
+
+            }
+            else if (lname.trim() == "") {
+                document.getElementById('lname_valid').innerHTML = "*Please enter your last name";
+                document.getElementById('lname').focus();
+            }
+            else if (uname.trim() == "") {
+                document.getElementById('uname_valid').innerHTML = "*Please enter a username";
+                document.getElementById('uname').focus();
+            }
+            else if (pwd.trim() == "") {
+                document.getElementById('pwd_valid').innerHTML = "*Please enter a password";
+                document.getElementById('pwd').focus();
+            }
+            else {
+
+
+                $.ajax({
+                    url: "/api/Users",
+                    type: "POST",
+                    data: JSON.stringify(dataObject),
+                    dataType: "json",
+                    headers: { "Content-Type": "application/json" },
+                    success: function (data) {
+                        alert("Successfully Registered!");
+                        $("#fname").val('');
+                        $("#lname").val('');
+                        $("#uname").val('');
+                        $("#pwd").val('');
+
+                    },
+                    error: function (data) {
+
+                        alert("Registration Failed!");
+
+                    }
+                });
+                 }
         });
     });
 </script>
