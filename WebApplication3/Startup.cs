@@ -29,8 +29,8 @@ namespace WebApplication3
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddDbContext<UserContext>(opt =>
-              opt.UseSqlServer(Configuration.GetConnectionString("UserContext")));
+            services.AddDbContext<ApplicationDbContext>(opt =>
+              opt.UseSqlServer(Configuration.GetConnectionString("App")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,11 +44,7 @@ namespace WebApplication3
             {
                 app.UseHsts();
             }
-            app.UseDefaultFiles(new DefaultFilesOptions
-            {
-                DefaultFileNames = new
-    List<string> { "SignUp.html" }
-            });
+          
             app.UseStaticFiles();
             app.UseHttpsRedirection();
             app.UseMvc();

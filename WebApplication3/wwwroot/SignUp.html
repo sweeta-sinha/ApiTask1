@@ -2,9 +2,85 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="css/materialize.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <title>Register</title>
 </head>
 <body>
+    <div class="signup_form">
 
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="fname" type="text" class="validate">
+                        <label for="fname">First Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="lname" type="text" class="validate">
+                        <label for="lname">Last Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="uname" type="text" class="validate">
+                        <label for="uname">Username</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="pwd" type="password" class="validate">
+                        <label for="pwd">Password</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button class="btn waves-effect waves-light" id="submit_btn" type="submit">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+
+    </div>
 </body>
 </html>
+
+<script>
+    $(function () {
+        $("#submit_btn").click(function () {
+            //alert("1");
+            var dataObject = {
+                FirstName: $("#fname").val(), //Reading text box values using Jquery
+                LastName: $("#lname").val(),
+                Username: $("#uname").val(),
+                Password: $("#pwd").val(),
+            };
+            $.ajax({
+                url: "/api/Users",
+                type: "POST",
+                data: JSON.stringify(dataObject),
+                dataType: "json",
+                headers: { "Content-Type": "application/json" },
+                success: function (data) {
+                    $("#fname").val('');
+                    $("#lname").val('');
+                    $("#uname").val('');
+                    $("#pwd").val('');
+                    alert("Successfully Registered!");
+                },
+                error: function (data) {
+               
+                    alert("Registration Failed!");
+
+                }
+            });
+        });
+    });
+</script>

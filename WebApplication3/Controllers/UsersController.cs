@@ -13,9 +13,9 @@ namespace WebApplication3.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly UserContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public UsersController(UserContext context)
+        public UsersController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -24,7 +24,7 @@ namespace WebApplication3.Controllers
         [HttpGet]
         public IEnumerable<User> GetUsers()
         {
-            return _context.Users;
+            return _context.Users.ToList();
         }
 
         // GET: api/Users/5
