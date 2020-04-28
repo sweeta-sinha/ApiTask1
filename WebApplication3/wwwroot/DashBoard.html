@@ -11,6 +11,19 @@
     <title>Dashboard</title>
 </head>
 <body>
-
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo" id="username"></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><button>Logout</button></li>                
+            </ul>
+        </div>
+    </nav>
 </body>
 </html>
+
+<script>
+    $(function () {
+        var userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+    });
+</script>
