@@ -16,5 +16,6 @@ namespace WebApplication3.Models
        
 
         public DbSet<User> Users { get; set; }
+      
     }
 }

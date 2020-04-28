@@ -50,7 +50,11 @@
                         </button>
                     </div>
                 </div>
-
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <span>Already registered <a href="Login.html" class="red-text">Sign In</a></span>
+                    </div>
+                </div>
             </form>
         </div>
 
@@ -146,26 +150,25 @@
             else {
 
 
-                $.ajax({
-                    url: "/api/Users",
-                    type: "POST",
-                    data: JSON.stringify(dataObject),
-                    dataType: "json",
-                    headers: { "Content-Type": "application/json" },
-                    success: function (data) {
-                        alert("Successfully Registered!");
-                        $("#fname").val('');
-                        $("#lname").val('');
-                        $("#uname").val('');
-                        $("#pwd").val('');
+                    $.ajax({
+                        url: "/api/Users",
+                        type: "POST",
+                        data: JSON.stringify(dataObject),
+                        dataType: "json",
+                        headers: { "Content-Type": "application/json" },
+                        success: function (data) {
+                            alert("Successfully Registered!");
+                            $("#fname").val('');
+                            $("#lname").val('');
+                            $("#uname").val('');
+                            $("#pwd").val('');
 
-                    },
-                    error: function (data) {
+                        },
+                        error: function (data) {
+                            alert(data.responseText);
+                        } //End of AJAX error function
 
-                        alert("Registration Failed!");
-
-                    }
-                });
+                    });
                  }
         });
     });
