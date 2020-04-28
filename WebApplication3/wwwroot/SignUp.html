@@ -15,7 +15,7 @@
         <h2 class="center-align">Sign Up</h2>
         <p class="req">(* Fields are required.)</p>
         <div class="row">
-            <form class="col s12">
+            <form method="post" id="myform" class="col s12">
                 <div class="row">
                     <div class="input-field col s6">
                         <input id="fname" type="text" class="validate" onkeyup="validatefname()">
@@ -117,7 +117,8 @@
     }
 
     $(function () {
-        $("#submit_btn").click(function () {
+        $("form#myform").submit(function (ev) {
+            ev.preventDefault();
             //alert("1");
             var dataObject = {
                 FirstName: $("#fname").val(), //Reading text box values using Jquery
@@ -125,32 +126,8 @@
                 Username: $("#uname").val(),
                 Password: $("#pwd").val(),
             };
-            var fname = document.getElementById('fname').value;
-            var lname = document.getElementById('lname').value;
-            var uname = document.getElementById('uname').value;
-            var pwd = document.getElementById('pwd').value;
-
-            if (fname.trim() == "") {
-                document.getElementById('fname_valid').innerHTML = "*Please enter your first name";
-                document.getElementById('fname').focus();
-
-            }
-            else if (lname.trim() == "") {
-                document.getElementById('lname_valid').innerHTML = "*Please enter your last name";
-                document.getElementById('lname').focus();
-            }
-            else if (uname.trim() == "") {
-                document.getElementById('uname_valid').innerHTML = "*Please enter a username";
-                document.getElementById('uname').focus();
-            }
-            else if (pwd.trim() == "") {
-                document.getElementById('pwd_valid').innerHTML = "*Please enter a password";
-                document.getElementById('pwd').focus();
-            }
-            else {
-
-
-                    $.ajax({
+          
+                     $.ajax({
                         url: "/api/Users",
                         type: "POST",
                         data: JSON.stringify(dataObject),
@@ -163,13 +140,10 @@
                             $("#uname").val('');
                             $("#pwd").val('');
 
-                        },
-                        error: function (data) {
-                            alert(data.responseText);
-                        } //End of AJAX error function
+                        }
 
                     });
-                 }
+               
         });
     });
 </script>

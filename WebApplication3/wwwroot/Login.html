@@ -10,6 +10,37 @@
     <title>Sign In</title>
 </head>
 <body>
+    <div class="signup_form">
+        <h2 class="center-align">Log In</h2>
+        <p class="req">(* Fields are required.)</p>
+        <div class="row">
+            <form method="post" id="login" class="col s12">
+               
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="uname" type="text" class="validate" onkeyup="validateuname()">
+                        <label for="uname">Username<span class="req">*</span></label>
+                    </div>
+                    <div class="validation col s12" id="uname_valid"></div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="pwd" type="password" class="validate" onkeyup="validatepwd()">
+                        <label for="pwd">Password<span class="req">*</span></label>
+                    </div>
+                    <div class="validation col s12" id="pwd_valid"></div>
+                </div>
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button class="btn waves-effect waves-light" id="submit_btn">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+               
+            </form>
+        </div>
 
+    </div>
 </body>
 </html>
