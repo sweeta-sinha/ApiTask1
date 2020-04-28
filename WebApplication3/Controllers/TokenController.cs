@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -32,7 +33,7 @@ namespace SimpleApiTask.Controllers
         public async Task<IActionResult> Post(User _userData)
         {
 
-            if (_userData != null && _userData.Username != null && _userData.Password != null)
+            if (_userData != null && _userData.Username != "" && _userData.Password != "")
             {
                 var user = await GetUser(_userData.Username, _userData.Password);
 
@@ -49,6 +50,13 @@ namespace SimpleApiTask.Controllers
                     new Claim("UserName", user.Username),
                     new Claim("Password", user.Password)
                    };
+                    var claimsIdentity = new ClaimsIdentity(new[]
+                    {
+                         new Claim(ClaimTypes.Name, user.Username),
+                         //...
+                     }, "Cookies");
+                    var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                    await Request.HttpContext.SignInAsync("Cookies", claimsPrincipal);
 
                     var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
 
@@ -65,7 +73,7 @@ namespace SimpleApiTask.Controllers
             }
             else
             {
-                return BadRequest();
+                return BadRequest("Fill the fields");
             }
         }
 

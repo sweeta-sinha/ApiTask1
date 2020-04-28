@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -49,6 +51,21 @@ namespace WebApplication3
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
                 };
             });
+            services.AddCors();
+            services.AddAuthentication(options => {
+                options.DefaultScheme = "Cookies";
+            }).AddCookie("Cookies", options => {
+                options.Cookie.Name = "auth_cookie";
+                options.Cookie.SameSite = SameSiteMode.None;
+                options.Events = new CookieAuthenticationEvents
+                {
+                    OnRedirectToLogin = redirectContext =>
+                    {
+                        redirectContext.HttpContext.Response.StatusCode = 401;
+                        return Task.CompletedTask;
+                    }
+                };
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,6 +79,15 @@ namespace WebApplication3
             {
                 app.UseHsts();
             }
+
+            app.UseCors(policy =>
+            {
+                policy.AllowAnyHeader();
+                policy.AllowAnyMethod();
+                policy.AllowAnyOrigin();
+                policy.AllowCredentials();
+            });
+
             app.UseAuthentication();
             app.UseStaticFiles();
             app.UseHttpsRedirection();

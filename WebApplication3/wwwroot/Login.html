@@ -33,7 +33,7 @@
                 <div class="row">
                     <div class="col s12 center-align">
                         <button class="btn waves-effect waves-light" id="submit_btn">
-                            Submit
+                            Log In
                         </button>
                     </div>
                 </div>
@@ -44,3 +44,35 @@
     </div>
 </body>
 </html>
+
+<script>
+    $(function () {
+        $("form#login").submit(function (ev) {
+            ev.preventDefault();
+            //alert("1");
+            var dataObject = {
+               
+                Username: $("#uname").val(),
+                Password: $("#pwd").val(),
+            };
+
+            $.ajax({
+                url: "/api/Token",
+                type: "POST",
+                data: JSON.stringify(dataObject),
+                dataType: "json",
+                headers: { "Content-Type": "application/json" },
+                success: function (data) {
+                    alert("Login Successfull!");
+                   
+                    $("#pwd").val('');
+
+                },
+               xhrFields: {
+                    withCredentials: true
+                }
+            });
+          
+        });
+    });
+</script>
