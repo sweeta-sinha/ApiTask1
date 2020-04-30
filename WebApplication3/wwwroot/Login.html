@@ -50,6 +50,7 @@
         $("form#login").submit(function (ev) {
             ev.preventDefault();
             //alert("1");
+            var name = document.getElementById('uname');
             var dataObject = {
                
                 Username: $("#uname").val(),
@@ -63,10 +64,11 @@
                
                 headers: { "Content-Type": "application/json" },
                 success: function () {
+                    localStorage.setItem('name', name.value);
+                    alert("Login Successfull!");
+                    window.location.href = "DashBoard.html"
                    
-                        alert("Login Successfull!");
-                        window.location = "https://localhost:44324/DashBoard.html"
-                                       
+
                 },
                 xhrFields: {
                     withCredentials: true
@@ -75,4 +77,6 @@
           
         });
     });
+  
+
 </script>

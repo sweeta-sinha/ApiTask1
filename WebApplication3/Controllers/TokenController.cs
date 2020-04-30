@@ -87,6 +87,7 @@ namespace SimpleApiTask.Controllers
                     //await HttpContext.SignInAsync(
                     //                     CookieAuthenticationDefaults.AuthenticationScheme,
                     //                     new ClaimsPrincipal(claimsIdentity));
+
                     Set("MyCookie",(token.EncodedHeader +"." +token.EncodedPayload+"."+token.EncryptingCredentials), 10);
                     return Ok(new JwtSecurityTokenHandler().WriteToken(token));
                 }
@@ -103,6 +104,7 @@ namespace SimpleApiTask.Controllers
         }
         public void Set(string key, string value, int? expireTime)
         {
+
             CookieOptions option = new CookieOptions();
 
             if (expireTime.HasValue)
@@ -112,6 +114,7 @@ namespace SimpleApiTask.Controllers
 
             Response.Cookies.Append(key, value, option);
         }
+
         private async Task<User> GetUser(string username, string password)
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.Username == username && u.Password == password);
