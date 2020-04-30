@@ -84,16 +84,16 @@ namespace SimpleApiTask.Controllers
                     var token = new JwtSecurityToken(_configuration["Jwt:Issuer"], _configuration["Jwt:Audience"], claims, expires: DateTime.UtcNow.AddDays(1), signingCredentials: signIn);
 
                     // await Request.HttpContext.SignInAsync("Cookies", claimsPrincipal);
-                    await HttpContext.SignInAsync(
-                                         CookieAuthenticationDefaults.AuthenticationScheme,
-                                         new ClaimsPrincipal(claimsIdentity));
+                    //await HttpContext.SignInAsync(
+                    //                     CookieAuthenticationDefaults.AuthenticationScheme,
+                    //                     new ClaimsPrincipal(claimsIdentity));
                     Set("MyCookie",(token.EncodedHeader +"." +token.EncodedPayload+"."+token.EncryptingCredentials), 10);
                     return Ok(new JwtSecurityTokenHandler().WriteToken(token));
                 }
                 else
                 {
                     
-                    return BadRequest("Invalid credentials");
+                     return BadRequest("Invalid credentials");
                 }
             }
             else

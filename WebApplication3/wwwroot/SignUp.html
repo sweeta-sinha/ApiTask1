@@ -18,12 +18,12 @@
             <form method="post" id="myform" class="col s12">
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="fname" type="text" class="validate" onkeyup="validatefname()">
+                        <input id="fname" type="text" required class="validate" onkeyup="validatefname()">
                         <label for="fname">First Name<span class="req">*</span></label>
                     </div>
 
                     <div class="input-field col s6">
-                        <input id="lname" type="text" class="validate" onkeyup="validatelname()">
+                        <input id="lname" type="text" required class="validate" onkeyup="validatelname()">
                         <label for="lname">Last Name<span class="req">*</span></label>
                     </div>
                     <div class="validation col s12" id="fname_valid"></div>
@@ -31,14 +31,14 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="uname" type="text" class="validate" onkeyup="validateuname()">
+                        <input id="uname" type="text" required class="validate" onkeyup="validateuname()">
                         <label for="uname">Username<span class="req">*</span></label>
                     </div>
                     <div class="validation col s12" id="uname_valid"></div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="pwd" type="password" class="validate" onkeyup="validatepwd()">
+                        <input id="pwd" type="password" required class="validate" onkeyup="validatepwd()">
                         <label for="pwd">Password<span class="req">*</span></label>
                     </div>
                     <div class="validation col s12" id="pwd_valid"></div>

@@ -12337,6 +12337,9 @@
       "Microsoft.NETCore.App >= 2.1.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.1.9",
       "Swashbuckle.AspNetCore >= 5.4.0",
+      "Swashbuckle.AspNetCore.Swagger >= 5.4.0",
+      "Swashbuckle.AspNetCore.SwaggerGen >= 5.4.0",
+      "Swashbuckle.AspNetCore.SwaggerUI >= 5.4.0",
       "System.IdentityModel.Tokens.Jwt >= 6.5.1"
     ]
   },
@@ -12428,6 +12431,18 @@
             "version": "[2.1.9, )"
           },
           "Swashbuckle.AspNetCore": {
+            "target": "Package",
+            "version": "[5.4.0, )"
+          },
+          "Swashbuckle.AspNetCore.Swagger": {
+            "target": "Package",
+            "version": "[5.4.0, )"
+          },
+          "Swashbuckle.AspNetCore.SwaggerGen": {
+            "target": "Package",
+            "version": "[5.4.0, )"
+          },
+          "Swashbuckle.AspNetCore.SwaggerUI": {
             "target": "Package",
             "version": "[5.4.0, )"
           },

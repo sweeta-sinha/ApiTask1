@@ -3,8 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
     <script src="js/materialize.js"></script>
+    <link href="css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="css/jquery.dataTables_themeroller.css" rel="stylesheet" />
     <link href="css/materialize.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
 
@@ -15,15 +17,43 @@
         <div class="nav-wrapper">
             <a href="#" class="brand-logo" id="username"></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><button>Logout</button></li>                
+                <li><button>Logout</button></li>
             </ul>
         </div>
     </nav>
+
+    <div class="mytable">
+        <table class="centered striped" id="example">
+            <thead>
+                <tr><th>Sites</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>SitePoint</td></tr>
+                <tr><td>Learnable</td></tr>
+                <tr><td>Flippa</td></tr>
+                <tr><td>SitePoint</td></tr>
+                <tr><td>Learnable</td></tr>
+                <tr><td>Flippa</td></tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
 
-<!--<script>
-    $(function () {
-        var userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+<script src="js/jquery.dataTables.min.js"></script>
+<script src="js/dataTables.jqueryui.min.js"></script>
+<script src="js/dataTables.material.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('body').css("background-image", "none")
     });
-</script>-->
+    $(function () {
+        $("#example").dataTable({
+            "bJQueryUI": true,
+            "bSort": false,
+            "bPaginate": true,
+            "iDisplayLength": 2
+        });
+    })
+</script>
