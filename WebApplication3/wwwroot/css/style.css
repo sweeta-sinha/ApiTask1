@@ -4,7 +4,11 @@
     background-repeat:no-repeat;
     background-size:cover;
 }
-
+.mytable {
+    margin-top: 5%;
+    border: 1px solid black;
+    box-shadow: 2px 2px 2px 2px;
+}
 .signup_form {
     background-color:white;
     opacity:0.8;

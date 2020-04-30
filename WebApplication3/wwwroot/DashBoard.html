@@ -5,6 +5,7 @@
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/jquery.dataTables.min.js"></script>
     <script src="js/materialize.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="css/jquery.dataTables.min.css" rel="stylesheet" />
     <link href="css/jquery.dataTables_themeroller.css" rel="stylesheet" />
     <link href="css/materialize.css" rel="stylesheet" />
@@ -17,23 +18,42 @@
         <div class="nav-wrapper">
             <a href="#" class="brand-logo" id="username"> </a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><button class="btn waves-effect waves-light deep-purple" onclick="deleteCookieValue(document.cookie)">Logout</button></li>
+                <li><a class="btn waves-effect waves-light white pink-text" onclick="deleteCookieValue(document.cookie)">Logout</a></li>
             </ul>
+            <ul id="slide-out" class="sidenav">
+                <li><a class="btn waves-effect waves-light white pink-text" onclick="deleteCookieValue(document.cookie)">Logout</a></li>
+            </ul>
+            <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
         </div>
     </nav>
 
-    <div class="mytable">
+    <div class="container mytable">
         <table class="centered striped" id="example">
             <thead>
-                <tr><th>Sites</th></tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Item Name</th>
+                    <th>Item Price</th>
+                </tr>
             </thead>
+
             <tbody>
-                <tr><td>SitePoint</td></tr>
-                <tr><td>Learnable</td></tr>
-                <tr><td>Flippa</td></tr>
-                <tr><td>SitePoint</td></tr>
-                <tr><td>Learnable</td></tr>
-                <tr><td>Flippa</td></tr>
+                <tr>
+                    <td>Alvin</td>
+                    <td>Eclair</td>
+                    <td>$0.87</td>
+                </tr>
+                <tr>
+                    <td>Alan</td>
+                    <td>Jellybean</td>
+                    <td>$3.76</td>
+                </tr>
+                <tr>
+                    <td>Jonathan</td>
+                    <td>Lollipop</td>
+                    <td>$7.00</td>
+                </tr>
             </tbody>
         </table>
     </div>
@@ -46,9 +66,12 @@
 
 <script>
     $(document).ready(function () {
-        $('body').css("background-image", "none")
+        $('body').css("background-image", "none");
+        $('.sidenav').sidenav();
         var storedName = localStorage.getItem('name');
-
+        if (storedName == null) {
+            window.location.href="Login.html"
+        }
         document.getElementById('username').innerHTML = "Welcome "+storedName+ "!";
 
     });
