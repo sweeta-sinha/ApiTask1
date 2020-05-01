@@ -28,8 +28,7 @@ namespace SimpleApiTask.Controllers
         public async Task<ActionResult<IEnumerable<string>>> GetAsync()
         {
 
-            // Request.Cookies["x"];
-           
+         
                 var name = HttpContext.Request.Cookies["x"];
                 var handler = new JwtSecurityTokenHandler();
                 var token = handler.ReadJwtToken(name);
@@ -38,26 +37,19 @@ namespace SimpleApiTask.Controllers
                 await GetUser(user, pwd);
                 if((user !="") && (pwd != ""))
                 {
-                    string s = "{\"data\":[[\"Tiger Nixon\",\"System Architect\", \"Edinburgh\", \"5421\",\"2011/04/25\",\"$320,800\"],[\"Garrett Winters\",\"Accountant\",\"Tokyo\", \"8422\",\"2011/07/25\",\"$170,750\"]]}";
+                    string s = "{\"data\":[[\"Tiger Nixon\",\"System Architect\", \"Edinburgh\", \"54\",\"2011/04/25\",\"$320,800\"],[\"Garrett Winters\",\"Accountant\",\"Tokyo\", \"22\",\"2011/07/25\",\"$170,750\"]]}";
 
                     return Ok(JObject.Parse(s));
                 }
-                ///var decoded = jwt_decode(name);
-               
-            
+           
 
             else
             {
+               
                 return BadRequest("Login First");
             }
         }
-        //[HttpPost]
-        //public async Task<IActionResult> Post(User _userData)
-        //{
-        //    var user = await GetUser(_userData.Username, _userData.Password);
-        //    //await Get(user.Id);
-        //    return Ok(Get(user.Id));
-        //}
+      
      
         private async Task<User> GetUser(string username, string password)
         {
