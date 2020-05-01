@@ -18,14 +18,14 @@
                
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="uname" type="text" class="validate">
+                        <input id="uname" type="text" required class="validate">
                         <label for="uname">Username<span class="req">*</span></label>
                     </div>
                     <div class="validation col s12" id="uname_valid"></div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="pwd" type="password" class="validate">
+                        <input id="pwd" type="password" required class="validate">
                         <label for="pwd">Password<span class="req">*</span></label>
                     </div>
                     <div class="validation col s12" id="pwd_valid"></div>
@@ -69,6 +69,9 @@
                     window.location.href = "DashBoard.html"
                    
 
+                },
+                error: function () {
+                    alert("Invalid Username or Password!");
                 },
                 xhrFields: {
                     withCredentials: true

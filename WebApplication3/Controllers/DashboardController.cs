@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -24,18 +25,26 @@ namespace SimpleApiTask.Controllers
             _context = context;
         }
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public async Task<ActionResult<IEnumerable<string>>> GetAsync()
         {
 
             // Request.Cookies["x"];
-            if (Request.Cookies["x"] != null)
-            {
+           
                 var name = HttpContext.Request.Cookies["x"];
-                ///var decoded = jwt_decode(name);
-                string s = "{\"data\":[[\"Tiger Nixon\",\"System Architect\", \"Edinburgh\", \"5421\",\"2011/04/25\",\"$320,800\"],[\"Garrett Winters\",\"Accountant\",\"Tokyo\", \"8422\",\"2011/07/25\",\"$170,750\"]]}";
+                var handler = new JwtSecurityTokenHandler();
+                var token = handler.ReadJwtToken(name);
+                var user = token.Claims.First(claim => claim.Type == "UserName").Value;
+                var pwd = token.Claims.First(claim => claim.Type == "Password").Value;
+                await GetUser(user, pwd);
+                if((user !="") && (pwd != ""))
+                {
+                    string s = "{\"data\":[[\"Tiger Nixon\",\"System Architect\", \"Edinburgh\", \"5421\",\"2011/04/25\",\"$320,800\"],[\"Garrett Winters\",\"Accountant\",\"Tokyo\", \"8422\",\"2011/07/25\",\"$170,750\"]]}";
 
-                return Ok(JObject.Parse(s));
-            }
+                    return Ok(JObject.Parse(s));
+                }
+                ///var decoded = jwt_decode(name);
+               
+            
 
             else
             {
