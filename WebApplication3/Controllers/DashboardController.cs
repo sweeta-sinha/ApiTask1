@@ -42,15 +42,13 @@ namespace SimpleApiTask.Controllers
                     return Ok(JObject.Parse(s));
                 }
            
-
             else
             {
                
                 return BadRequest("Login First");
             }
         }
-      
-     
+           
         private async Task<User> GetUser(string username, string password)
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.Username == username && u.Password == password);

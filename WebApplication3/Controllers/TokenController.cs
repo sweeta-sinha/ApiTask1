@@ -60,15 +60,13 @@ namespace SimpleApiTask.Controllers
                     }, "Cookies");
 
                     var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-                    //await Request.HttpContext.SignInAsync("Cookies", claimsPrincipal);
-                            
+                                               
                     var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]));
 
                     var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
                     var token = new JwtSecurityToken(_configuration["Jwt:Issuer"], _configuration["Jwt:Audience"], claims, expires: DateTime.UtcNow.AddDays(1), signingCredentials: signIn);                 
 
-                    ///Set("MyCookie", (token.EncodedHeader + "." + token.EncodedPayload + "." + token.EncryptingCredentials), 10);
                     var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
                                         Response.Cookies.Append(
                             "x",
@@ -92,19 +90,7 @@ namespace SimpleApiTask.Controllers
                 return BadRequest("Fill the fields");
             }
         }
-        //public void Set(string key, string value, int? expireTime)
-        //{
-
-        //    CookieOptions option = new CookieOptions();
-
-        //    if (expireTime.HasValue)
-        //        option.Expires = DateTime.Now.AddMinutes(expireTime.Value);
-        //    else
-        //        option.Expires = DateTime.Now.AddMilliseconds(10);
-
-        //    Response.Cookies.Append(key, value, option);
-        //}
-
+   
         private async Task<User> GetUser(string username, string password)
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.Username == username && u.Password == password);
