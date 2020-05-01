@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/jwt-decode.min.js"></script>
     <script src="js/jquery.dataTables.min.js"></script>
     <script src="js/materialize.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -29,8 +30,8 @@
     </nav>
 
     <div class="container mytable">
-        <table class="centered striped" id="example">
-            <thead>
+        <table class="centered striped row-border cell-border" id="example">
+            <!--<thead>
                 <tr>
                     <th>Name</th>
                     <th>Item Name</th>
@@ -54,7 +55,18 @@
                     <td>Lollipop</td>
                     <td>$7.00</td>
                 </tr>
-            </tbody>
+            </tbody>-->
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Age</th>
+                    <th>Start date</th>
+                    <th>Salary</th>
+                </tr>
+            </thead>
+
         </table>
     </div>
 </body>
@@ -70,9 +82,12 @@
         $('.sidenav').sidenav();
         var storedName = localStorage.getItem('name');
         if (storedName == null) {
-            window.location.href="Login.html"
+            window.location.href = "Login.html"
         }
-        document.getElementById('username').innerHTML = "Welcome "+storedName+ "!";
+        var token = document.cookie;
+        var decoded = jwt_decode(token);
+        console.log(decoded)
+        document.getElementById('username').innerHTML = "Welcome " + storedName + "!";
 
     });
     $(function () {
@@ -80,15 +95,33 @@
             "bJQueryUI": true,
             "bSort": false,
             "bPaginate": true,
-            "iDisplayLength": 2
+            "iDisplayLength": 1,
+            'ajax':({
+                type: 'Get',
+                url: "/api/Dashboard",
+                headers: { "Accept": "application/json" },
+                xhrFields: {
+                    withCredentials: true
+                },
+              
+                data: function (d) {
+                    console.log(d.order);
+                    return JSON.stringify(d);
+                },
+                dataSrc: function (json) {
+                    $("#example").val(json.recordsTotal);
+                    return json.data;
+                }
+               
+            })
         });
 
-    
+
 
         //$.ajax({
         //    url: "/api/Dashboard",
         //    type: "GET",
-        //    dataType: 'json',  
+        //    dataType: 'json',
         //    headers: { "Content-Type": "application/json" },
         //    success:
         //        function (data) {
@@ -104,6 +137,6 @@
         document.cookie = cookieName + "=expired;" + cookieExpireDate;
         localStorage.clear();
         window.location.href = "Login.html"
-        
+
     }
 </script>

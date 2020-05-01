@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json.Linq;
 using WebApplication3.Models;
 
 namespace SimpleApiTask.Controllers
@@ -23,21 +24,32 @@ namespace SimpleApiTask.Controllers
             _context = context;
         }
         [HttpGet]
-        public async Task<IActionResult> Get([FromRoute] int id)
+        public ActionResult<IEnumerable<string>> Get()
         {
-            var user = await _context.Users.FindAsync(id);        
-            return Ok(user);
+
+            // Request.Cookies["x"];
+            if (Request.Cookies["x"] != null)
+            {
+                var name = HttpContext.Request.Cookies["x"];
+                ///var decoded = jwt_decode(name);
+                string s = "{\"data\":[[\"Tiger Nixon\",\"System Architect\", \"Edinburgh\", \"5421\",\"2011/04/25\",\"$320,800\"],[\"Garrett Winters\",\"Accountant\",\"Tokyo\", \"8422\",\"2011/07/25\",\"$170,750\"]]}";
+
+                return Ok(JObject.Parse(s));
+            }
+
+            else
+            {
+                return BadRequest("Login First");
+            }
         }
-
-        [HttpPost]
-        public async Task<IActionResult> Post(User _userData)
-        {
-            var user = await GetUser(_userData.Username, _userData.Password);
-            //await Get(user.Id);
-            return Ok(Get(user.Id));
-        }
-
-
+        //[HttpPost]
+        //public async Task<IActionResult> Post(User _userData)
+        //{
+        //    var user = await GetUser(_userData.Username, _userData.Password);
+        //    //await Get(user.Id);
+        //    return Ok(Get(user.Id));
+        //}
+     
         private async Task<User> GetUser(string username, string password)
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.Username == username && u.Password == password);

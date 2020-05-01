@@ -51,50 +51,40 @@ namespace SimpleApiTask.Controllers
                     new Claim("UserName", user.Username),
                     new Claim("Password", user.Password)
                    };
+                
 
-                    var claim = new List<Claim>
+                    var claimsIdentity = new ClaimsIdentity(new[]
                     {
                         new Claim(ClaimTypes.Name, user.Username),
-                        new Claim(JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                    new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
-                     new Claim("Id", user.Id.ToString()),
-                    new Claim("FirstName", user.FirstName),
-                    new Claim("LastName", user.LastName),
-                    new Claim("UserName", user.Username),
-                    new Claim("Password", user.Password)
-                    };
-                    
-                    var claimsIdentity = new ClaimsIdentity(
-                        claim, CookieAuthenticationDefaults.AuthenticationScheme);
-                    ////var claimsIdentity = new ClaimsIdentity(new[]
-                    ////{
-                    ////     new Claim(ClaimTypes.Name, user.Username),
-
-                    ////     //...
-                    //// }, "auth_cookie");
+                        //...
+                    }, "Cookies");
 
                     var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-
-
+                    //await Request.HttpContext.SignInAsync("Cookies", claimsPrincipal);
+                            
                     var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]));
 
                     var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-                    var token = new JwtSecurityToken(_configuration["Jwt:Issuer"], _configuration["Jwt:Audience"], claims, expires: DateTime.UtcNow.AddDays(1), signingCredentials: signIn);
+                    var token = new JwtSecurityToken(_configuration["Jwt:Issuer"], _configuration["Jwt:Audience"], claims, expires: DateTime.UtcNow.AddDays(1), signingCredentials: signIn);                 
 
-                    // await Request.HttpContext.SignInAsync("Cookies", claimsPrincipal);
-                    //await HttpContext.SignInAsync(
-                    //                     CookieAuthenticationDefaults.AuthenticationScheme,
-                    //                     new ClaimsPrincipal(claimsIdentity));
-
-                    Set("MyCookie",(token.EncodedHeader +"." +token.EncodedPayload+"."+token.EncryptingCredentials), 10);
+                    ///Set("MyCookie", (token.EncodedHeader + "." + token.EncodedPayload + "." + token.EncryptingCredentials), 10);
+                    var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+                                        Response.Cookies.Append(
+                            "x",
+                            tokenString,
+                            new CookieOptions()
+                            {
+                                Path = "/",
+                                Expires = DateTime.Now.AddMinutes(10)
+                            }
+                        );
                     return Ok(new JwtSecurityTokenHandler().WriteToken(token));
                 }
                 else
                 {
-                    
-                     return BadRequest("Invalid credentials");
+
+                    return BadRequest("Invalid credentials");
                 }
             }
             else
@@ -102,18 +92,18 @@ namespace SimpleApiTask.Controllers
                 return BadRequest("Fill the fields");
             }
         }
-        public void Set(string key, string value, int? expireTime)
-        {
+        //public void Set(string key, string value, int? expireTime)
+        //{
 
-            CookieOptions option = new CookieOptions();
+        //    CookieOptions option = new CookieOptions();
 
-            if (expireTime.HasValue)
-                option.Expires = DateTime.Now.AddMinutes(expireTime.Value);
-            else
-                option.Expires = DateTime.Now.AddMilliseconds(10);
+        //    if (expireTime.HasValue)
+        //        option.Expires = DateTime.Now.AddMinutes(expireTime.Value);
+        //    else
+        //        option.Expires = DateTime.Now.AddMilliseconds(10);
 
-            Response.Cookies.Append(key, value, option);
-        }
+        //    Response.Cookies.Append(key, value, option);
+        //}
 
         private async Task<User> GetUser(string username, string password)
         {

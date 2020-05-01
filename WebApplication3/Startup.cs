@@ -50,15 +50,24 @@ namespace WebApplication3
                 
               
             });
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie("Cookies", options =>
-                {
-                    options.Cookie.Name = "auth_cookie";
-                    options.Cookie.SameSite = SameSiteMode.None;
-                    options.Cookie.HttpOnly = false;
 
-                })
-                
+            services.AddAuthentication(options => {
+                options.DefaultScheme = "Cookies";
+            }).AddCookie("Cookies", options => {
+                options.Cookie.Name = "auth_cookie";
+                options.Cookie.SameSite = SameSiteMode.None;
+                options.Events = new CookieAuthenticationEvents
+                {
+                    OnRedirectToLogin = redirectContext =>
+                    {
+                        redirectContext.HttpContext.Response.StatusCode = 401;
+                        return Task.CompletedTask;
+                    }
+                };
+            });
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+               
             .AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
